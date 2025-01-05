@@ -1,0 +1,29 @@
+package main
+
+import (
+	"fmt"
+	"functions/"
+	"rugent/functions"
+)
+
+func main() {
+	encodedData := "AJTQ2h9DXrBxjUWbmaKbciuz82PLTJPWo"
+
+	decodedData, err := functions.DecodePumpFunInstruction(encodedData)
+	if err != nil {
+		fmt.Printf("Error decoding data: %v\n", err)
+		return
+	}
+
+	// Print in the requested format
+	fmt.Printf("{\n")
+	fmt.Printf("  amount: {\n")
+	fmt.Printf("    type: \"u64\",\n")
+	fmt.Printf("    data: \"%d\"\n", decodedData.Amount)
+	fmt.Printf("  },\n")
+	fmt.Printf("  maxSolCost: {\n")
+	fmt.Printf("    type: \"u64\",\n")
+	fmt.Printf("    data: \"%d\"\n", decodedData.MaxSolCost)
+	fmt.Printf("  }\n")
+	fmt.Printf("}\n")
+}
